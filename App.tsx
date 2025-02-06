@@ -18,6 +18,7 @@ export default function App() {
     color,
     requestPermissions,
     scanForPeripherals,
+    disconnectDevice,
   } = useBLE();
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -42,15 +43,18 @@ export default function App() {
     <SafeAreaView style={[styles.container, { backgroundColor: color }]}>
       <View style={styles.heartRateTitleWrapper}>
         {connectedDevice ? (
-          <>
-            <Text style={styles.heartRateTitleText}>Connected</Text>
-          </>
+          <Text style={styles.heartRateTitleText}>Connected</Text>
         ) : (
           <Text style={styles.heartRateTitleText}>Please connect the BLE</Text>
         )}
       </View>
-      <TouchableOpacity onPress={openModal} style={styles.ctaButton}>
-        <Text style={styles.ctaButtonText}>Connect</Text>
+      <TouchableOpacity
+        onPress={connectedDevice ? disconnectDevice : openModal}
+        style={styles.ctaButton}
+      >
+        <Text style={styles.ctaButtonText}>
+          {connectedDevice ? "Disconnect" : "Connect"}
+        </Text>
       </TouchableOpacity>
       <DeviceModal
         closeModal={hideModal}

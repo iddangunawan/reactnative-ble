@@ -150,6 +150,15 @@ function useBLE() {
     }
   };
 
+  const disconnectDevice = () => {
+    if (connectedDevice) {
+      // await connectedDevice.cancelConnection();
+      bleManager.cancelDeviceConnection(connectedDevice.id);
+      setConnectedDevice(null);
+      setColor("white");
+    }
+  }
+
   return {
     connectToDevice,
     allDevices,
@@ -158,6 +167,7 @@ function useBLE() {
     requestPermissions,
     scanForPeripherals,
     startStreamingData,
+    disconnectDevice,
   };
 }
 

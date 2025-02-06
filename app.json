@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "reactnative-ble",
-    "slug": "reactnative-ble",
+    "name": "react-native-ble",
+    "slug": "react-native-ble",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
